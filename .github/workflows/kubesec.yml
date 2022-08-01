@@ -40,13 +40,4 @@ jobs:
         with:
           sarif_file: kubesec-results.sarif
           - name: container-scan-to-sarif-action
-  # You may pin to the exact commit or the version.
-  # uses: rm3l/container-scan-to-sarif-action@c0c928905d6ae7fd200e6d3bb99820b58b582609
-  uses: rm3l/container-scan-to-sarif-action@v1.7.1
-  with:
-    # Version of the container-scan-to-sarif tool. See https://github.com/rm3l/container-scan-to-sarif/releases
-    converter-version: # optional, default is 0.7.3
-    # Path to the input Container Scan report to convert
-    input-file: file.yaml
-    # Path to the output SARIF report to generate
-    output-file:kubesec-results.sarif # optional, default is scanreport.sarif
+ 
