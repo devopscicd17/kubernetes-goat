@@ -1,4 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
+ This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
@@ -93,7 +93,6 @@ jobs:
             OPENSHIFT_SERVER: `${{ secrets.OPENSHIFT_SERVER }}`,
             OPENSHIFT_TOKEN: `${{ secrets.OPENSHIFT_TOKEN }}`,
           };
-
           const GHCR = "ghcr.io";
           if (`${{ env.IMAGE_REGISTRY }}`.startsWith(GHCR)) {
             core.info(`Image registry is ${GHCR} - no registry password required`);
@@ -102,7 +101,6 @@ jobs:
             core.info("A registry password is required");
             secrets["IMAGE_REGISTRY_PASSWORD"] = `${{ secrets.IMAGE_REGISTRY_PASSWORD }}`;
           }
-
           const missingSecrets = Object.entries(secrets).filter(([ name, value ]) => {
             if (value.length === 0) {
               core.error(`Secret "${name}" is not set`);
@@ -111,7 +109,6 @@ jobs:
             core.info(`✔️ Secret "${name}" is set`);
             return false;
           });
-
           if (missingSecrets.length > 0) {
             core.setFailed(`❌ At least one required secret is not set in the repository. \n` +
               "You can add it using:\n" +
@@ -122,7 +119,6 @@ jobs:
           else {
             core.info(`✅ All the required secrets are set`);
           }
-
     - name: Check out repository
       uses: actions/checkout@v3
 
@@ -130,12 +126,10 @@ jobs:
       if: env.APP_NAME == ''
       run: |
         echo "APP_NAME=$(basename $PWD)" | tee -a $GITHUB_ENV
-
     - name: Determine image tags
       if: env.IMAGE_TAGS == ''
       run: |
         echo "IMAGE_TAGS=latest ${GITHUB_SHA::12}" | tee -a $GITHUB_ENV
-
     # https://github.com/redhat-actions/buildah-build#readme
     - name: Build from Dockerfile
       id: build-image
@@ -149,7 +143,6 @@ jobs:
         # Otherwise, point this to your Dockerfile/Containerfile relative to the repository root.
         dockerfiles: |
           ./Dockerfile
-
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to registry
       id: push-image
