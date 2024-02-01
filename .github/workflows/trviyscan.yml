@@ -30,7 +30,7 @@ jobs:
 #          severity: 'CRITICAL'
 #
 #      - name: Upload Trivy scan results to GitHub Security tab
-#        uses: github/codeql-action/upload-sarif@v2
+#        uses: github/codeql-action/upload-sarif@v3
 #        with:
 #          sarif_file: 'trivy-results-docker.sarif'
 
@@ -47,11 +47,11 @@ jobs:
           skip-dirs: "ignored-dir"
 
 #      - name: Upload Trivy scan results to GitHub Security tab
-#        uses: github/codeql-action/upload-sarif@v1
+#        uses: github/codeql-action/upload-sarif@v3
 #        with:
 #          sarif_file: 'trivy-results-fs.sarif'
 
       - name: DEBUG Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'debug-trivy-results.sarif'
